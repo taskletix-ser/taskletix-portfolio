@@ -1,0 +1,17 @@
+{
+  "name": "taskletix-frontend",
+  "version": "1.0.0",
+  "description": "Taskletix Website Frontend",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server . -p 3000 -o",
+    "start": "npx http-server . -p 3000",
+    "build": "echo 'No build process needed for static HTML'"
+  },
+  "keywords": ["taskletix", "website", "frontend"],
+  "author": "Taskletix",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

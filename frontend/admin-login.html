@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin Login - Taskletix</title>
+    <link rel="stylesheet" href="admin.css" />
+    <link rel="icon" href="images/logo .png" type="image/png" sizes="10x10">
+  </head>
+  <body>
+    <div class="login-wrap">
+      <div class="card login-card">
+        <div class="card-header">
+          <h1 class="card-title">Admin Login</h1>
+        </div>
+        <div class="login-body">
+          <form id="login-form">
+            <div class="field">
+              <label for="password">Password</label>
+              <input id="password" type="password" placeholder="Enter admin password" required />
+            </div>
+            <button class="btn" type="submit">Login</button>
+          </form>
+          <p id="login-error" style="color:#fca5a5;display:none;margin-top:10px"></p>
+        </div>
+      </div>
+    </div>
+    <script src="admin.js"></script>
+  </body>
+  </html>
+
+
