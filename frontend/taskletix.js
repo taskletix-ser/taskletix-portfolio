@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.disabled = true;
 
             try {
-                const response = await fetch('http://localhost:5000/api/contact', {
+                const response = await fetch('http://82.29.165.109/api/contact', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.disabled = true;
 
             try {
-                const response = await fetch('http://localhost:5000/api/subscribe', {
+                const response = await fetch('http://82.29.165.109/api/subscribe', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -285,4 +285,5 @@ document.addEventListener('DOMContentLoaded', function() {
             timelineSelect.appendChild(optionElement);
         });
     }
+
 });
