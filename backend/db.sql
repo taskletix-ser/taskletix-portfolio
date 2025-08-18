@@ -31,7 +31,7 @@
 -- SET country_code = '+91' 
 -- WHERE country_code IS NULL OR country_code = '';
 
--- Create database and table in XAMPP (phpMyAdmin or MySQL CLI)
+-- Create database and table
 CREATE DATABASE IF NOT EXISTS taskletix_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE taskletix_db;
 
@@ -49,15 +49,29 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-USE taskletix_db;
+-- Only add country_code if it does NOT exist
+-- This requires a check using INFORMATION_SCHEMA
+SET @col_exists = (
+    SELECT COUNT(*) 
+    FROM INFORMATION_SCHEMA.COLUMNS 
+    WHERE TABLE_SCHEMA='taskletix_db' 
+      AND TABLE_NAME='contact_submissions' 
+      AND COLUMN_NAME='country_code'
+);
 
--- Add country_code column (without IF NOT EXISTS for MySQL compatibility)
--- Only add if the column doesn't already exist
-ALTER TABLE contact_submissions 
-ADD COLUMN country_code VARCHAR(10) AFTER phone;
+-- Add column only if it does not exist
+-- Use prepared statement to avoid syntax issues
+SET @sql = IF(@col_exists = 0,
+    'ALTER TABLE contact_submissions ADD COLUMN country_code VARCHAR(10) AFTER phone;',
+    'SELECT "Column already exists";'
+);
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
 
 -- Update existing records to have a default country code (India +91)
 UPDATE contact_submissions 
 SET country_code = '+91' 
 WHERE country_code IS NULL OR country_code = '';
+
 
