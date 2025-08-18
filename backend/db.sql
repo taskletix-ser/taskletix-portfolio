@@ -1,8 +1,8 @@
 -- Create database and table
-CREATE DATABASE IF NOT EXISTS taskletix_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE taskletix_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE taskletix_db;
 
-CREATE TABLE IF NOT EXISTS contact_submissions (
+CREATE TABLE contact_submissions (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(150) NOT NULL,
   email VARCHAR(200) NOT NULL,
@@ -23,3 +23,4 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
 UPDATE contact_submissions 
 SET country_code = '+91' 
 WHERE country_code IS NULL OR country_code = '';
+
