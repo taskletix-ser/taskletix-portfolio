@@ -24,7 +24,7 @@ USE taskletix_db;
 
 -- Add country_code column if it doesn't exist
 ALTER TABLE contact_submissions 
-ADD COLUMN IF NOT EXISTS country_code VARCHAR(10) AFTER phone;
+ADD COLUMN country_code VARCHAR(10) AFTER phone;
 
 -- Update existing records to have a default country code (India +91)
 UPDATE contact_submissions 
@@ -34,6 +34,7 @@ WHERE country_code IS NULL OR country_code = '';
 
 SET country_code = '+91' 
 WHERE country_code IS NULL OR country_code = '';
+
 
 
 
